@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #daffc6;
+        }
+        .heaad{
+            margin-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><img src="spring.jpg" class="img-fluid" width="100"> </div>
+    <div class="heaad">   <a class="navbar-brand"  th:href="@{/main}">
+        <i class="fa fa-trash-o fa-lg"></i> Main Page </a></div>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/inventory}">
+                    <i class="fa fa-trash-o fa-lg"></i>inventory </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/registration}" >
+                    <i class="fa fa-trash-o fa-lg"></i> registration </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add" >
+                    <i class="fa fa-trash-o fa-lg"></i> Add new product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:if="${isAdmin}" th:href="@{/admin}"> Admin Page </a>
+            </li>
+        </ul>
+    </div>
+        <span class="navbar-text">
+    <h2 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</h2>
+    </span>
+        <span class="navbar-text">
+    <form   th:action="@{/logout}" method="post">
+                <i class="fa fa-trash-o fa-lg"></i>
+                <input type="submit" value="Sign Out"/>
+            </form>
+    </span>
+    </div>
+</nav>
+
+<form class="container" style=" position: center; margin-top: 20px">
+    <h3>All products for sale</h3>
+    <div class="card mb-3 background" style="max-width: 250px;" th:each="user : ${allUsers}" >
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body" >
+                    <h5 class="card-title" th:text="'User id: ' +${user.id}"></h5>
+                    <p class="card-text" th:text="'Username: '  +${user.username}"></p>
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top: 20px">
+                <a th:href="@{/admin/temp(id=${user.id})}" class="btn btn-danger">
+                    <i class="fa fa-trash-o fa-lg"></i>edit</a>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

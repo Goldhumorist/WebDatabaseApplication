@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #daffc6;
+        }
+        .heaad{
+            margin-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><img src="spring.jpg" class="img-fluid" width="100"> </div>
+    <div class="heaad">   <a class="navbar-brand"  th:href="@{/main}">
+        <i class="fa fa-trash-o fa-lg"></i> Main Page </a></div>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/inventory}">
+                    <i class="fa fa-trash-o fa-lg"></i>inventory </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/registration}" >
+                    <i class="fa fa-trash-o fa-lg"></i> registration </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add" >
+                    <i class="fa fa-trash-o fa-lg"></i> Add new product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:if="${isAdmin}" th:href="@{/admin}"> Admin Page </a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<form   th:action="@{/edit}" th:object="${products}">
+
+    <table>
+        <tr>
+            <td>Edit name </td>
+            <input type="hidden" name="id" th:field="*{id}">
+            <td><input name="name" th:field="*{name}"> </td>
+        </tr>
+        <tr>
+            <td>Edit model  </td>
+            <td> <input name="modelProduct" th:field="*{modelProduct}"> </td>
+        </tr>
+        <tr>
+            <td>Edit type </td>
+            <td> <input name="type" th:field="*{type}"> </td>
+        </tr>
+        <input type="hidden" name="authorId" th:field="*{authorId}">
+
+        <td colspan="2">
+            <input type="submit"></td>
+    </table>
+</form>
+</body>
+</html>

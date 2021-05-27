@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #daffc6;
+        }
+        .heaad{
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><img src="spring.jpg" class="img-fluid" width="100"> </div>
+    <div class="heaad">   <a class="navbar-brand"  th:href="@{/main}">
+        <i class="fa fa-trash-o fa-lg"></i> Main Page </a></div>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/inventory}">
+                    <i class="fa fa-trash-o fa-lg"></i>inventory </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/registration}" >
+                    <i class="fa fa-trash-o fa-lg"></i> registration </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add" >
+                    <i class="fa fa-trash-o fa-lg"></i> Add new product </a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<div>
+
+    <center>
+        <h1>Registration</h1>
+            <form th:action="@{/registration}" th:object="${userForm}" method="post">
+                <div class="form-group">
+                    <label> Username </label> <br>
+                    <input id="username"
+                           placeholder="username"
+                           th:field="*{username}"/>
+                </div>
+                <div class="form-group">
+                    <label> Password </label><br>
+                    <input id="password"
+                           type="password"
+                           placeholder="password"
+                           th:field="*{password}"/></div>
+                <div class="form-group">
+                    <label> Password confirm </label><br>
+                    <input id="passwordConfirm"
+                           type="password"
+                           placeholder="Confirm your password"
+                           th:field="*{passwordConfirm}"/>
+                </div>
+                <button type="submit" class="btn btn-primary" >Register</button> <br/>
+                    <span>Already registered? <a  th:href="@{/login}">Login here</a></span>
+            </form>
+    </center>
+</div>
+</body>
+</html>

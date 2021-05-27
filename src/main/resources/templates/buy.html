@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #daffc6;
+        }
+
+        .heaad{
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><img src="spring.jpg" class="img-fluid" width="100"> </div>
+    <div class="heaad">   <a class="navbar-brand"  th:href="@{/main}">
+        <i class="fa fa-trash-o fa-lg"></i> Main Page </a></div>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/inventory}">
+                    <i class="fa fa-trash-o fa-lg"></i>inventory </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/registration}" >
+                    <i class="fa fa-trash-o fa-lg"></i> registration </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add" >
+                    <i class="fa fa-trash-o fa-lg"></i> Add new product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:if="${isAdmin}" th:href="@{/admin}"> Admin Page </a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<h3 style="margin-left: 330px">Do you want buy this product?</h3>
+<form  th:action="@{/buy}" th:object="${product}" style="margin-left: 600px">
+
+    <div class="form-group row" style="max-width: 200px">
+        <input type="hidden" name="id" th:field="*{id}">
+    </div>
+    <div class="form-group row" style="max-width: 200px">
+    <label for="name">Name of Product</label>
+        <input type="text" class="form-control" id="name" th:field="*{name}" readonly>
+    </div>
+    <div class="form-group row" style="max-width: 200px">
+        <label for="modelProduct">Name of Product</label>
+        <input type="text" class="form-control" id="modelProduct" th:field="*{modelProduct}" readonly>
+    </div>
+    <div class="form-group row" style="max-width: 200px">
+    <label for="type">Type of Product</label>
+        <input type="text" class="form-control" id="type" th:field="*{type}" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-danger" formaction="/main"> No </button></p>
+</form>
+</body>
+</html>

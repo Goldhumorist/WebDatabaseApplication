@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #daffc6;
+
+        }
+
+        .heaad{
+            margin-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div><img src="spring.jpg" class="img-fluid" width="100"> </div>
+    <div class="heaad">   <a class="navbar-brand"  th:href="@{/main}">
+        <i class="fa fa-trash-o fa-lg"></i> Main Page </a></div>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/inventory}">
+                    <i class="fa fa-trash-o fa-lg"></i>inventory </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/registration}" >
+                    <i class="fa fa-trash-o fa-lg"></i> registration </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add" >
+                    <i class="fa fa-trash-o fa-lg"></i> Add new product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:if="${isAdmin}" th:href="@{/admin}"> Admin Page </a>
+            </li>
+        </ul>
+    </div>
+        <span class="navbar-text">
+    <h2 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]   </h2>
+    </span>
+        <span class="navbar-text">
+    <form   th:action="@{/logout}" method="post">
+                <i class="fa fa-trash-o fa-lg"></i>
+                <input type="submit" value="Sign Out"/>
+            </form>
+    </span>
+    </div>
+</nav>
+
+<h1 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]], it is your inventory!</h1>
+<table  class="table table-striped">
+    <tr><th></th><th>Name of product </th><th>Model</th><th>Type</th><th>Status</th></tr>
+     <tr  th:each="each: ${product}">
+          <td><a  href="#" th:href="@{/editStatus(id=${each.id})}" class="btn btn-primary">
+            <i class="fa fa-trash-o fa-lg"></i>To sell this product </a></td>
+         <td th:text="${each.name}">Name of product </td>
+        <td th:text="${each.modelProduct}">Model</td>
+        <td th:text="${each.type}">Type</td>
+        <td><strong th:text="${each.getStatusName()}"></strong></td>
+    </tr>
+</table>
+</body>
+</html>

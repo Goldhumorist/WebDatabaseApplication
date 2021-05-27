@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+        body{
+            background: #daffc6;
+        }
+    </style>
+</head>
+
+<body>
+<div th:fragment="header">
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <a th:href="@{/main}" class="h5 my-0 me-md-auto fw-normal btn btn-outline-primary">Main Page</a>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="btn btn-outline-primary" th:href="@{/registration}">Registration </a>
+        </nav>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="btn btn-outline-primary" th:href="@{/login}">Login </a>
+        </nav>
+    </header>
+</div>
+
+<center>
+    <div><img src="spring.jpg" class="img-fluid" width="1400"> </div>
+</center>
+ </body>
+</html>
